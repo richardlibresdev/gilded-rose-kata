@@ -4,16 +4,20 @@ import com.gildedrose.Item;
 
 public class BackstageStrategy implements ItemStrategy {
 
+    int INCREASE_RATE = 1;
+
     @Override
     public void update(Item item) {
-        QualityRules.increase(item);
+
 
         if (item.sellIn < 11) {
-            QualityRules.increase(item,2);
+            INCREASE_RATE = 2;
         }
         if (item.sellIn < 6) {
-            QualityRules.increase(item,3);
+            INCREASE_RATE = 3;
         }
+
+        QualityRules.increase(item,INCREASE_RATE);
 
         item.sellIn = item.sellIn - 1;
 

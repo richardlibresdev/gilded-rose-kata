@@ -3,6 +3,8 @@ package com.gildedrose;
 class GildedRose {
     Item[] items;
 
+    int MAX_QUALITY = 50;
+
     public GildedRose(Item[] items) {
         this.items = items;
     }
@@ -10,6 +12,7 @@ class GildedRose {
     public void updateQuality() {
 
         for (Item item : items) {
+            //normal quality decrease
             if (!item.name.equals("Aged Brie")
                 && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                 if (item.quality > 0) {
@@ -18,9 +21,10 @@ class GildedRose {
                     }
                 }
             } else {
+                //aging items, quality increase
                 if (item.quality < 50) {
                     item.quality = item.quality + 1;
-
+                    //Backstage quality increase
                     if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         if (item.sellIn < 11) {
                             if (item.quality < 50) {
@@ -36,7 +40,7 @@ class GildedRose {
                     }
                 }
             }
-
+            //general sellIn decrease
             if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
                 item.sellIn = item.sellIn - 1;
             }
